@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
                     mPager.setCurrentItem(0);
                     break;
 
-//                case R.id.navigation_fav:
-//                    mPager.setCurrentItem(1);
-//                    break;
+                case R.id.navigation_fav:
+                    mPager.setCurrentItem(1);
+                    break;
             }
             return true;
         }
