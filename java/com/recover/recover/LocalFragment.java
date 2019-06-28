@@ -33,9 +33,6 @@ public class LocalFragment extends Fragment {
         //Bind buttons with actions
         ImageButton localPicBtn = view.findViewById(R.id.local_pic_btn);
         ImageButton localMusicBtn = view.findViewById(R.id.local_music_btn);
-        ImageButton localMovieBtn = view.findViewById(R.id.local_movie_btn);
-        ImageButton localDocumentBtn = view.findViewById(R.id.local_document_btn);
-        ImageButton setting_btn = view.findViewById(R.id.setting_btn);
         final Activity activity = getActivity();
 
         localPicBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,28 +48,6 @@ public class LocalFragment extends Fragment {
             public void onClick(View v) {
                 startActivity(activity, "music");
                 Toast.makeText(activity, "Local musics", Toast.LENGTH_SHORT).show();
-            }//onClick
-        });//View.OnClickListener
-
-        localMovieBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(activity, "movies");
-                Toast.makeText(activity, "Local movies", Toast.LENGTH_SHORT).show();
-            }//onClick
-        });//View.OnClickListener
-
-        localDocumentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(activity, "Local documents", Toast.LENGTH_SHORT).show();
-            }//onClick
-        });//View.OnClickListener
-
-        setting_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(activity, "Settings", Toast.LENGTH_SHORT).show();
             }//onClick
         });//View.OnClickListener
 
