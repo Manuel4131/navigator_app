@@ -1,0 +1,17 @@
+This app is designed to display local pictures and songs. 
+In this edition, the pictures target path is at DCIM directory
+ and songs target path is at Music directory. 
+
+About the design
+
+When the picture button is pressed, an intent is sent
+to start GridView activity showing the searched pictures.
+And each row will display 4 items. The search function
+is completed by service and broadcast receiver. As the
+button is triggered, a service searching local pictures
+is launched to find pictures in target path by using DFS
+ algorithm. Whenever a picture is found, a broadcast is sent.
+And as the receiver get the broadcast, it will update one portion
+of the whole GridView. 
+Any advice to the design is welcomed. :)
+Contact: iamsamin14@gmail.com
