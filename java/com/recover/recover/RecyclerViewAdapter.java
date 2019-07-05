@@ -134,38 +134,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             });
         }
 
-        // input is a integer from 0 to 3, and return value is
-        // an ImageView object which the object name is
-        // image + "integer+1"
+        /**
+         * Return corresponded ImageView depending on pos.
+         * Like: pos is 2 then ch ImageView2.
+         * @param pos
+         * @return
+         */
         public ImageView selectImageView(int pos){
             return ImageViews.get(pos);
         }
 
         @Override
         public void onClick(View v) {
-//            Intent intent = new Intent(mCtx,MainActivity.class);
-//            Intent intent=new Intent();
-// implicit call to view image
-//            intent.setAction(Intent.ACTION_VIEW);
-//            intent.setDataAndType(Uri.parse(mImages.get(getAdapterPosition())),"image/*");
-//            if (intent.resolveActivity(mCtx.getPackageManager()) != null)
-//                mCtx.startActivity(intent);
-
-//                Intent detailViewIntent=new Intent(mCtx,DetailPictureActivity.class);
-//                int itemPosition= (int)v.getTag();
-//                Log.d("onClick", String.valueOf(itemPosition));
-//                detailViewIntent.putExtra("path", mImages.get(itemPosition));
-//                mCtx.startActivity(detailViewIntent);
-//            ImageView detailPic = v.findViewById(R.id.detail_pic);
-//            if(mDetailPic!=null)
-//                mDetailPic.setVisibility(View.VISIBLE);
-//            Bitmap bmp = BitmapFactory.decodeFile(mImages.get(getAdapterPosition()));
-//            mDetailPic.setImageBitmap(bmp);
-
-
-//            Toast.makeText(mCtx,String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-        }
+            // no event 
+        }// onClick
     }// class ViewHolder
-
-
 }
