@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark"
+    android:background="@android:color/white"
     android:visibility="visible"
     tools:context=".MainActivity">
 
@@ -26,7 +26,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="?android:attr/windowBackground"
-        app:itemIconTint="@color/design_default_color_primary"
+        app:itemIconTint="#FD1212"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

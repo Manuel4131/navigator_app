@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -69,18 +71,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int pos) {
         Log.d(Tag, "onBindViewHolder called");
         String msg = "onBVH is called,pos";
-        Log.d(msg,String.valueOf(pos));
-        int rowNumber = 4;
-        int imgPos = pos%4;
-
         for(int i=0;i<itemNumberEachRow;i++){
-            if(pos*itemNumberEachRow + i < dataSize) {
+            if(pos * itemNumberEachRow + i < dataSize) {
                 Glide.with(mCtx)
                         .asBitmap()
                         .load(mImages.get(pos * itemNumberEachRow + i))
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .dontAnimate()
                         .into(viewHolder.selectImageView(i));
+                viewHolder.bindImageEvent(i,pos * itemNumberEachRow + i );
             }
         }
 
@@ -93,12 +92,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     @Override
     public int getItemCount() {
-        Log.d("totalRowNumber",String.valueOf(totalRowNumber));
+//        Log.d("totalRowNumber",String.valueOf(totalRowNumber));
         return totalRowNumber;
     }
-
-
-
 
     /**
      * Hold each listitem object in the memory.
@@ -112,7 +108,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         LinearLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
-
             super(itemView);
             image1 = itemView.findViewById(R.id.image1);
             ImageViews.add(image1);
@@ -127,6 +122,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             itemView.setOnClickListener(this);
         }
 
+        public void bindImageEvent(int imageNumber,final int pos){
+            selectImageView(imageNumber).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Log.d("image number", String.valueOf(pos));
+                    Intent detailViewIntent=new Intent(mCtx,DetailPictureActivity.class);
+                    detailViewIntent.putExtra("path", mImages.get(pos));
+                    mCtx.startActivity(detailViewIntent);
+                }
+            });
+        }
 
         // input is a integer from 0 to 3, and return value is
         // an ImageView object which the object name is
@@ -137,9 +143,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View v) {
-//            Intent intent = new Intent(mCtx,RemoteFragment.class);
-//            intent.setAction(Intent.ACTION_EDIT);
-//            mCtx.startActivity(intent);
+//            Intent intent = new Intent(mCtx,MainActivity.class);
+//            Intent intent=new Intent();
+// implicit call to view image
+//            intent.setAction(Intent.ACTION_VIEW);
+//            intent.setDataAndType(Uri.parse(mImages.get(getAdapterPosition())),"image/*");
+//            if (intent.resolveActivity(mCtx.getPackageManager()) != null)
+//                mCtx.startActivity(intent);
+
+//                Intent detailViewIntent=new Intent(mCtx,DetailPictureActivity.class);
+//                int itemPosition= (int)v.getTag();
+//                Log.d("onClick", String.valueOf(itemPosition));
+//                detailViewIntent.putExtra("path", mImages.get(itemPosition));
+//                mCtx.startActivity(detailViewIntent);
 //            ImageView detailPic = v.findViewById(R.id.detail_pic);
 //            if(mDetailPic!=null)
 //                mDetailPic.setVisibility(View.VISIBLE);

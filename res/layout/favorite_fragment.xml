@@ -5,12 +5,12 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#F8CB26"
     android:visibility="visible"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/self_intro"
+        android:id="@+id/app_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -22,26 +22,66 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
+        android:layout_marginRight="10dp"
         android:gravity="bottom"
         android:text="Intro"
         android:textSize="18sp"
         app:fontFamily="sans-serif"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/intro_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="161dp"
+        android:id="@+id/contact_me"
+        android:layout_width="391dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/self_intro"
-        android:layout_alignStart="@+id/self_intro"
-        android:layout_marginTop="27dp"
-        android:text="contact"
+        android:layout_below="@+id/app_description"
+        android:layout_alignStart="@+id/app_description"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="49dp"
+        android:clickable="true"
+        android:linksClickable="true"
+        android:text="iamsamin14@gmail.com"
+        android:textIsSelectable="true"
+        app:fontFamily="casual" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_description"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="11dp"
+        android:text="@string/contact"
+        android:textSize="12sp"
+        app:fontFamily="casual" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="46dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contact_me"
+        android:layout_alignStart="@+id/app_description"
+        android:layout_marginTop="13dp"
+        android:text="Src"
+        android:textSize="12sp"
+        app:fontFamily="casual" />
+
+    <TextView
+        android:id="@+id/src"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/app_description"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:fontFamily="@font/aclonica"
+        android:text="here"
+        android:textIsSelectable="true"
         app:fontFamily="casual" />
 
 </RelativeLayout>

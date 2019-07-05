@@ -40,6 +40,7 @@ public class GridViewActivity extends AppCompatActivity {
         startService(serviceIntent);
         Intent openPicIntent = new Intent();
         openPicIntent.setAction(Intent.ACTION_VIEW);
+        registerReceiver(mReceiver,mIntentFilter);
     }
 
     private void setUpBroadcastReceiverIntent() {
@@ -51,8 +52,8 @@ public class GridViewActivity extends AppCompatActivity {
             mIntentFilter.addAction("update-music");
         }
     }
-
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    public static ArrayList<String> queue = new ArrayList<String>();
+    public BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals("update-picture")){
@@ -70,26 +71,29 @@ public class GridViewActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         Log.d("called", "onResume");
-        registerReceiver(mReceiver,mIntentFilter);
+        SearchFileService.PauseSearching = false;
+//        registerReceiver(mReceiver,mIntentFilter);
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
-        unregisterReceiver(mReceiver);
         Log.d("called", "onPause");
+        super.onPause();
+        SearchFileService.PauseSearching = true;
+//        unregisterReceiver(mReceiver);
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
+        SearchFileService.searchFileRunnable.stopSearch();
         Log.d("called", "onDestory");
+        unregisterReceiver(mReceiver);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        stopService(serviceIntent);
         Log.d("called", "onStop");
     }
 

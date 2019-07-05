@@ -10,9 +10,9 @@ import java.io.File;
 import java.util.Stack;
 
 public class SearchFileService extends Service {
-    private Thread searchFileThread;
-    private SearchFileRunnable searchFileRunnable;
-
+    public static Thread searchFileThread;
+    public static SearchFileRunnable searchFileRunnable;
+    public static Boolean PauseSearching = false;
 
     @Override
     public void onCreate(){
@@ -81,7 +81,6 @@ public class SearchFileService extends Service {
         public void stopSearch(){
             runSearch = false;
         }
-
         public void run(){
                 Log.d("run service","run broadcast intent");
                 Log.d("External root path", mStartPath);
@@ -92,6 +91,8 @@ public class SearchFileService extends Service {
                 String currentNode= null;
 
                 while(!searchingStack.isEmpty() && runSearch){
+                    while(PauseSearching){}
+
                     currentNode= (String)searchingStack.pop();
                     if(visitedStack.contains(currentNode))
                         continue;
@@ -100,16 +101,22 @@ public class SearchFileService extends Service {
                     File[] files= new File(currentNode).listFiles();
                     int counter =0;
                     for(File f:files){
+                        while(PauseSearching){}
                         if(f.isFile()) {
                             if(!runSearch) break;
                             for (String ext : mChkExt) {
+                                while(PauseSearching){}
+                                Log.d("searching","searching");
                                 String filePath = f.getAbsolutePath();
                                 if (filePath.endsWith(ext) && !filePath.startsWith(".")) {
                                     try {
-                                        Thread.sleep(400);
+                                        Thread.sleep(200);
                                         if(!runSearch) break;
                                         mBroadcastIntent.putExtra("path", filePath);
                                         sendBroadcast(mBroadcastIntent);
+                                        if(PauseSearching){
+                                            Log.d("ran", "run through: "+ String.valueOf(PauseSearching));
+                                        }
                                     }
                                     catch (InterruptedException e){
                                         e.printStackTrace();
@@ -139,8 +146,8 @@ public class SearchFileService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.d("service called", "onDestory is called");
-        searchFileThread.interrupt();
-        searchFileRunnable.stopSearch();
+//        searchFileThread.interrupt();
+//        searchFileRunnable.stopSearch();
 
     }
 
