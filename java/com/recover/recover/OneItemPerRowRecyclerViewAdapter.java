@@ -1,7 +1,9 @@
 package com.recover.recover;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -67,7 +70,7 @@ public class OneItemPerRowRecyclerViewAdapter extends RecyclerView.Adapter<OneIt
     }
 
 
-    public class ViewHolderOneItem extends RecyclerView.ViewHolder {
+    public class ViewHolderOneItem extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView songIcon;
         TextView songname;
         TextView singer;
@@ -79,6 +82,22 @@ public class OneItemPerRowRecyclerViewAdapter extends RecyclerView.Adapter<OneIt
             songname= itemView.findViewById(R.id.song_name);
             singer= itemView.findViewById(R.id.singer);
             parentLayout = itemView.findViewById(R.id.oneitemonerow_layout);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.d("clicksong","hitIt");
+            Intent callExternalMusicAppIntent = new Intent();
+            callExternalMusicAppIntent.setAction(Intent.ACTION_VIEW);
+            String path = mItems.get(getAdapterPosition());
+
+            callExternalMusicAppIntent.setDataAndType(Uri.parse(mItems.get(getAdapterPosition())),"audio/*");
+            if(callExternalMusicAppIntent.resolveActivity(mCtx.getPackageManager())!=null)
+                mCtx.startActivity(callExternalMusicAppIntent);
+            else{
+                Toast.makeText(mCtx,R.string.no_app_works,Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

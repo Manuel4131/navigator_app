@@ -146,7 +146,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View v) {
-            // no event 
+            // no event yet
         }// onClick
     }// class ViewHolder
 }

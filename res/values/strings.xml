@@ -13,4 +13,5 @@
     <string name="email"><a href="iamsamin14@gmail.com">iamsamin14@gmail.com</a></string>
     <string name="src">https://github.com/Manuel4131/navigator_app</string>
     <string name="introduction">Intro</string>
+    <string name="no_app_works">No app available to complete the request</string>
 </resources>
